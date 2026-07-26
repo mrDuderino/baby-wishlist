@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="3@CH:8">
+  <defs>
+    <linearGradient id="toys-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6DDD3" />
+      <stop offset="100%" stop-color="#CBB9AA" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#toys-bg)" />
+  <circle cx="420" cy="470" r="120" fill="#A9B7A2" fill-opacity="0.45" />
+  <circle cx="620" cy="390" r="90" fill="#B79E8B" fill-opacity="0.4" />
+  <rect x="700" y="520" width="180" height="140" rx="24" fill="#FAF8F5" fill-opacity="0.5" />
+</svg>
