@@ -16,3 +16,4 @@ export {
   MutedText,
   Text,
 } from "@/components/shared/typography";
+export { WarmImagePlaceholder } from "@/components/shared/warm-image-placeholder";
