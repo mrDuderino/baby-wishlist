@@ -1,0 +1,21 @@
+import { headers } from "next/headers";
+
+export function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() ?? "unknown";
+  }
+
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp) {
+    return realIp.trim();
+  }
+
+  return "unknown";
+}
+
+export async function getUserAgent(): Promise<string | null> {
+  const headerStore = await headers();
+  return headerStore.get("user-agent");
+}
