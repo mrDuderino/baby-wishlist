@@ -122,10 +122,8 @@ export function parseLandingContent(settings: Setting[]): LandingContent {
 }
 
 export const landingImages = {
-  /** Set to a path like `/images/landing/hero.jpg` when photos are ready. */
-  hero: null as string | null,
-  /** Set to a path like `/images/landing/about.jpg` when photos are ready. */
-  about: null as string | null,
+  hero: "/images/landing/hero.jpg",
+  about: "/images/landing/about.jpg",
 } as const;
 
 export const navigationItems = [
