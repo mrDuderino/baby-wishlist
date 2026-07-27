@@ -71,14 +71,14 @@ pnpm dlx vercel
 pnpm dlx vercel --prod
 ```
 
-`vercel.json` already configures the hourly cron:
+`vercel.json` configures a daily cron (Hobby plan allows at most one run per day):
 
 ```json
 {
   "crons": [
     {
       "path": "/api/cron/expire-reservations",
-      "schedule": "0 * * * *"
+      "schedule": "0 3 * * *"
     }
   ]
 }

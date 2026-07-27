@@ -145,7 +145,7 @@ Design tokens: cards 24px, buttons 18px, inputs 16px, soft shadows, warm palette
 - Rate limit: 5 reservations per IP per hour (HTTP 429)
 - Telegram notification sent asynchronously after success (optional env vars)
 - Audit log entry written via service role (non-blocking)
-- `GET /api/cron/expire-reservations` — hourly cron (Vercel) expires pending reservations after 72h
+- `GET /api/cron/expire-reservations` — daily cron (Vercel Hobby) expires pending reservations after 72h
 
 ## Admin Panel (Stage 7)
 
