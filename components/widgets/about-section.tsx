@@ -26,7 +26,7 @@ export function AboutSection({ content }: AboutSectionProps) {
           {landingImages.about ? (
             <Image
               src={landingImages.about}
-              alt="Мы вместе — будущие родители"
+              alt="Тёплые детали для будущей комнаты малышки"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

@@ -31,7 +31,7 @@ export function HeroSection({ content }: HeroSectionProps) {
           {landingImages.hero ? (
             <Image
               src={landingImages.hero}
-              alt="Мы вместе — будущие родители"
+              alt="Уютная детская комната в тёплых тонах"
               fill
               priority
               className="object-cover"
