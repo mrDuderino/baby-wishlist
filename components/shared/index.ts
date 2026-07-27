@@ -5,6 +5,7 @@ export { FormField } from "@/components/shared/form-field";
 export { LoadingButton } from "@/components/shared/loading-button";
 export { ProductStatusBadge } from "@/components/shared/product-status-badge";
 export { Section } from "@/components/shared/section";
+export { SkipLink } from "@/components/shared/skip-link";
 export {
   ProductCardSkeleton,
   SectionSkeleton,

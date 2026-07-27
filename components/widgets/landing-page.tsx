@@ -1,5 +1,6 @@
 import type { LandingContent } from "@/lib/content/landing";
 import type { Category, Product } from "@/types/database";
+import { SkipLink } from "@/components/shared/skip-link";
 import { WishlistProvider } from "@/components/providers/wishlist-provider";
 import { AboutSection } from "@/components/widgets/about-section";
 import { FaqSection } from "@/components/widgets/faq-section";
@@ -22,6 +23,7 @@ export function LandingPage({
 }: LandingPageProps) {
   return (
     <>
+      <SkipLink />
       <SiteHeader />
       <WishlistProvider
         initialCategories={categories}
