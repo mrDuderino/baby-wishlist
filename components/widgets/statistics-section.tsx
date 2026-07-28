@@ -24,10 +24,10 @@ function StatCard({
   return (
     <motion.div
       className="rounded-card border-border/80 bg-card shadow-soft border p-6"
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, delay }}
     >
       <p className="font-heading text-foreground text-4xl font-medium">
         <AnimatedCounter value={value} />
@@ -64,10 +64,10 @@ export function StatisticsSection({ countdownDate }: StatisticsSectionProps) {
         <StatCard label="ещё доступны" value={stats.available} delay={0.2} />
         <motion.div
           className="rounded-card border-border/80 bg-card shadow-soft border p-6"
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="text-muted-foreground text-sm">До встречи осталось</p>
           <p className="font-heading text-foreground mt-2 text-4xl font-medium">
@@ -79,10 +79,10 @@ export function StatisticsSection({ countdownDate }: StatisticsSectionProps) {
 
       <motion.div
         className="mt-10 space-y-3"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, delay: 0.35 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
       >
         <div className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Прогресс вишлиста</span>
@@ -93,7 +93,7 @@ export function StatisticsSection({ countdownDate }: StatisticsSectionProps) {
             className={cn("bg-primary h-full rounded-full")}
             initial={{ width: 0 }}
             whileInView={{ width: `${progress}%` }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
           />
         </div>
