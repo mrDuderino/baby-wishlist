@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { writeAdminAuditLog } from "@/lib/admin/audit";
 import { requireAdminSession } from "@/lib/admin/session";
 import { slugify } from "@/lib/helpers/format";
-import { parseMarketplaceLinks } from "@/lib/helpers/product-json";
+import { parseMarketplaceInput } from "@/lib/helpers/product-json";
 import { createClient } from "@/lib/supabase/server";
 import { productFormSchema } from "@/lib/validation/admin";
 
@@ -17,19 +17,6 @@ function parseGalleryInput(value: string): string[] {
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
-}
-
-function parseMarketplaceInput(value: string) {
-  if (!value.trim()) {
-    return [];
-  }
-
-  try {
-    const parsed = JSON.parse(value) as unknown;
-    return parseMarketplaceLinks(parsed);
-  } catch {
-    return [];
-  }
 }
 
 export async function saveProductAction(
@@ -65,6 +52,12 @@ export async function saveProductAction(
   }
 
   const payload = parsed.data;
+  const marketplaceLinks = parseMarketplaceInput(payload.marketplace_links);
+
+  if ("error" in marketplaceLinks) {
+    return { error: marketplaceLinks.error };
+  }
+
   const values = {
     category_id: payload.category_id,
     title: payload.title,
@@ -80,7 +73,7 @@ export async function saveProductAction(
     visible: payload.visible,
     cover_image: payload.cover_image || null,
     gallery: parseGalleryInput(payload.gallery),
-    marketplace_links: parseMarketplaceInput(payload.marketplace_links),
+    marketplace_links: marketplaceLinks,
     sort_order: payload.sort_order,
     seo_title: payload.seo_title || null,
     seo_description: payload.seo_description || null,

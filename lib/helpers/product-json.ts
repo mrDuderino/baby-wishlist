@@ -21,6 +21,50 @@ export function parseMarketplaceLinks(value: unknown): MarketplaceLink[] {
   });
 }
 
+export function parseMarketplaceInput(
+  value: string,
+): MarketplaceLink[] | { error: string } {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return [];
+  }
+
+  let parsed: unknown;
+
+  try {
+    parsed = JSON.parse(trimmed);
+  } catch {
+    return {
+      error:
+        "Некорректный JSON в marketplace links. Проверьте кавычки, запятые и поле price.",
+    };
+  }
+
+  if (!Array.isArray(parsed)) {
+    return {
+      error: "Marketplace links должны быть JSON-массивом: [{...}, {...}]",
+    };
+  }
+
+  const links = parseMarketplaceLinks(parsed);
+
+  if (parsed.length > 0 && links.length === 0) {
+    return {
+      error:
+        "Ни одна ссылка не прошла проверку. У каждой нужны title и url, price — опционально.",
+    };
+  }
+
+  if (links.length !== parsed.length) {
+    return {
+      error: `Распознано ${links.length} из ${parsed.length} ссылок. Проверьте title, url и price у остальных.`,
+    };
+  }
+
+  return links;
+}
+
 export function parseGallery(value: unknown): string[] {
   if (!Array.isArray(value)) {
     return [];

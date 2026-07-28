@@ -9,6 +9,7 @@ import {
   getProductImageUrl,
   getProductImages,
   parseGallery,
+  parseMarketplaceInput,
   parseMarketplaceLinks,
 } from "@/lib/helpers/product-json";
 
@@ -60,6 +61,47 @@ describe("parseMarketplaceLinks", () => {
   it("returns empty array for non-arrays", () => {
     expect(parseMarketplaceLinks(null)).toEqual([]);
     expect(parseMarketplaceLinks({})).toEqual([]);
+  });
+});
+
+describe("parseMarketplaceInput", () => {
+  it("returns error for invalid JSON", () => {
+    const result = parseMarketplaceInput(
+      '[{"title":"x","url":"https://a.com":123}]',
+    );
+
+    expect(result).toEqual({
+      error:
+        "Некорректный JSON в marketplace links. Проверьте кавычки, запятые и поле price.",
+    });
+  });
+
+  it("returns error when some links are invalid", () => {
+    const result = parseMarketplaceInput(
+      JSON.stringify([
+        { title: "Ozon", url: "https://ozon.ru/item", price: 2534 },
+        { title: "Bad", url: "not-a-url", price: 1980 },
+      ]),
+    );
+
+    expect(result).toEqual({
+      error:
+        "Распознано 1 из 2 ссылок. Проверьте title, url и price у остальных.",
+    });
+  });
+
+  it("parses valid marketplace input", () => {
+    const result = parseMarketplaceInput(
+      JSON.stringify([
+        { title: "Ozon", url: "https://ozon.ru/item", price: 2534 },
+        { title: "boan-baby", url: "https://boan-baby.ru/item", price: 1980 },
+      ]),
+    );
+
+    expect(result).toEqual([
+      { title: "Ozon", url: "https://ozon.ru/item", price: 2534 },
+      { title: "boan-baby", url: "https://boan-baby.ru/item", price: 1980 },
+    ]);
   });
 });
 
