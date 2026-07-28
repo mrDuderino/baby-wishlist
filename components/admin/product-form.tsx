@@ -190,7 +190,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
       <FormField
         id="marketplace_links"
         label="Marketplace links"
-        hint='JSON array, e.g. [{"title":"Ozon","url":"https://..."}]'
+        hint='JSON array, e.g. [{"title":"Ozon","url":"https://...","price":2345}]'
       >
         <Textarea
           id="marketplace_links"

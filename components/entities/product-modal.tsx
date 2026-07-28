@@ -80,13 +80,16 @@ export function ProductModal({
             </div>
           ) : null}
 
-          {product.price !== null ? (
+          {product.price !== null && marketplaceLinks.length === 0 ? (
             <p className="font-heading text-foreground text-3xl font-medium">
               {formatPrice(product.price, product.currency)}
             </p>
           ) : null}
 
-          <MarketplaceLinks links={marketplaceLinks} />
+          <MarketplaceLinks
+            links={marketplaceLinks}
+            currency={product.currency}
+          />
         </div>
 
         <DialogFooter>

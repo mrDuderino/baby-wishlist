@@ -39,9 +39,19 @@ describe("getProductStatusLabel", () => {
 describe("parseMarketplaceLinks", () => {
   it("parses valid links and skips invalid ones", () => {
     const links = parseMarketplaceLinks([
-      { title: "Ozon", url: "https://ozon.ru/item" },
+      { title: "Ozon", url: "https://ozon.ru/item", price: 2345 },
       { title: "Bad", url: "not-a-url" },
       { title: "", url: "https://wb.ru" },
+    ]);
+
+    expect(links).toEqual([
+      { title: "Ozon", url: "https://ozon.ru/item", price: 2345 },
+    ]);
+  });
+
+  it("accepts links without price", () => {
+    const links = parseMarketplaceLinks([
+      { title: "Ozon", url: "https://ozon.ru/item" },
     ]);
 
     expect(links).toEqual([{ title: "Ozon", url: "https://ozon.ru/item" }]);

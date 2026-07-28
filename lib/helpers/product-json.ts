@@ -5,6 +5,7 @@ import type { MarketplaceLink } from "@/types/database";
 const marketplaceLinkSchema = z.object({
   title: z.string().min(1),
   url: z.string().url(),
+  price: z.number().finite().nonnegative().optional(),
   icon: z.string().optional(),
   badge: z.string().optional(),
 });

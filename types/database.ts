@@ -14,6 +14,7 @@ export type ReservationStatus =
 export type MarketplaceLink = {
   title: string;
   url: string;
+  price?: number;
   icon?: string;
   badge?: string;
 };
